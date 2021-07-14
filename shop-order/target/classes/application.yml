@@ -1,0 +1,14 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: service-order
+  datasource:
+    url: jdbc:mysql://49.234.7.31:3306/test03?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: nihaoshijie
+
+  jpa:
+    hibernate:
+      ddl-auto: update
