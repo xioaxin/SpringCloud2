@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
  * @description: TODO
  * @date 2021/7/13 13:36
  */
-@EntityScan("com.example.common.entity")
 @SpringBootApplication
 public class App {
     public static void main(String[] args) {

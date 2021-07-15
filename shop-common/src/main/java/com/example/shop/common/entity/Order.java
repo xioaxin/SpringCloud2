@@ -20,10 +20,13 @@ import java.io.Serializable;
 @NoArgsConstructor
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class Order implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
     private Integer uid;
     private String username;
+    private Integer pid;
+    private String pname;
+    private Double pprice;
+    private Integer stock;
 }

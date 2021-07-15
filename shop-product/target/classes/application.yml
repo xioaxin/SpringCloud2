@@ -12,3 +12,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 49.234.7.31:8848

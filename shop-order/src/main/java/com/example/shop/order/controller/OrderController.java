@@ -6,6 +6,8 @@ import com.example.shop.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +28,20 @@ public class OrderController {
     private RestTemplate restTemplate;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
 
     @GetMapping("/order/prod/{pid}")
     public Order getOrder(@PathVariable("pid") Integer pid) {
+        ServiceInstance serviceInstance = discoveryClient.getInstances("service-product").get(0);
+        String url = serviceInstance.getHost() + ":" + serviceInstance.getPort();
+        System.out.println("http://" + url +"/product/"+ pid);
+        Product product = restTemplate.getForObject("http://" + url +"/product/"+ pid, Product.class);
         Order order = new Order();
-        Product product = restTemplate.getForObject("http://localhost:8081/product/" + pid, Product.class);
-        BeanUtils.copyProperties(product, order);
+        order.setUid(1);
+        order.setUsername("测试用户");
+        order.setPid(product.getPid());
         return order;
     }
 }

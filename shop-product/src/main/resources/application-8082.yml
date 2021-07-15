@@ -1,0 +1,19 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: service-product
+  datasource:
+    url: jdbc:mysql://49.234.7.31:3306/test03?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: nihaoshijie
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 49.234.7.31:8848
